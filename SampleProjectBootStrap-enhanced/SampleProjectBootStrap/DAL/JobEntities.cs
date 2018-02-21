@@ -14,7 +14,7 @@ namespace SampleProjectBootStrap.DAL
         public DbSet<Application> Applications { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Posting> Postings { get; set; }
-        public DbSet<Occupation> Occupations { get; set; }
+        //public DbSet<Occupation> Occupations { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
         
@@ -25,15 +25,15 @@ namespace SampleProjectBootStrap.DAL
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FileStore> FileStores { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FileStore> FileStores { get; set; }
 
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.Department> Departments { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.Department> Departments { get; set; }
 
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.City> Cities { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.City> Cities { get; set; }
 
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.Province> Provinces { get; set; }
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FTE> FTEs { get; set; }
-        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.JobCode> JobCodes { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.Province> Provinces { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FTE> FTEs { get; set; }
+        //public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.JobCode> JobCodes { get; set; }
 
     }
 }
