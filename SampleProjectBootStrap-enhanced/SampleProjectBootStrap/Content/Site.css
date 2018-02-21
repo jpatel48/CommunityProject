@@ -342,17 +342,18 @@ label {
     font-size: 15px;
 }
 
+
 .form-control {
     background-color: #f5f5f5;
     box-shadow: none;
     color: #565656;
     font-size: 14px;
-    padding: 30px 10px;
+    /* padding: 30px 10px; */
     margin-bottom: 30px;
     border: 1px solid #f1f1f1;
 }
 
-.btn {
+    .btn {
     background: #c8dfd9;
     color: #278465;
     border-radius: 6px;

@@ -773,8 +773,6 @@ C:\Users\Alienware\Desktop\janko\erm 4\Community Project\SampleProjectBootStrap-
 C:\Users\Alienware\Desktop\janko\erm 4\Community Project\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.dll
 C:\Users\Alienware\Desktop\janko\erm 4\Community Project\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.pdb
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.csprojResolveAssemblyReference.cache
-C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.DAL.JobMigrations.Initial.resources
-C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.dll
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.pdb
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\bin\ApplicationInsights.config
@@ -870,3 +868,5 @@ C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\bin\Microsoft.AI.Web.xml
+C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.DAL.JobMigrations.Initiat.resources
+C:\Users\Administrator\Desktop\CommunityProject\SampleProjectBootStrap-enhanced\SampleProjectBootStrap\obj\Debug\SampleProjectBootStrap.csproj.GenerateResource.Cache

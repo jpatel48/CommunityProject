@@ -25,7 +25,6 @@ namespace SampleProjectBootStrap.DAL
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
-      
-
+        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FileStore> FileStores { get; set; }
     }
 }

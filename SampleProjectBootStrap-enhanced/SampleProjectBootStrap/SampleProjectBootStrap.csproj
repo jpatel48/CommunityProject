@@ -190,14 +190,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicantsController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAL\JobEntities.cs" />
-    <Compile Include="DAL\JobMigrations\201802110409077_Initial.cs" />
-    <Compile Include="DAL\JobMigrations\201802110409077_Initial.Designer.cs">
-      <DependentUpon>201802110409077_Initial.cs</DependentUpon>
+    <Compile Include="DAL\JobMigrations\201802211950384_Initiat.cs" />
+    <Compile Include="DAL\JobMigrations\201802211950384_Initiat.Designer.cs">
+      <DependentUpon>201802211950384_Initiat.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\JobMigrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,11 +278,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Applicants\Create.cshtml" />
-    <Content Include="Views\Applicants\Delete.cshtml" />
-    <Content Include="Views\Applicants\Details.cshtml" />
-    <Content Include="Views\Applicants\Edit.cshtml" />
-    <Content Include="Views\Applicants\Index.cshtml" />
     <Content Include="Views\Applications\Create.cshtml" />
     <Content Include="Views\Applications\Delete.cshtml" />
     <Content Include="Views\Applications\Details.cshtml" />
@@ -309,8 +303,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DAL\JobMigrations\201802110409077_Initial.resx">
-      <DependentUpon>201802110409077_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="DAL\JobMigrations\201802211950384_Initiat.resx">
+      <DependentUpon>201802211950384_Initiat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

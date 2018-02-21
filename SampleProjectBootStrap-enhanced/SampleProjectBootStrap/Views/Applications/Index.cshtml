@@ -1,77 +1,45 @@
 ﻿@model IEnumerable<ProjectPlanning.Models.Application>
 
 @{
-    ViewBag.Title = "Application Index";
+    ViewBag.Title = "Index";
 }
 
-<h2>Application Index</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Application", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
-<div>
-    @using (Html.BeginForm())
-    {
-        <p>
-            <table>
-                <tr>
-                    <td>Select by Posting:</td>
-                    <td>@Html.DropDownList("PostingID", null, "All Postings", htmlAttributes: new { @class = "form-control" })</td>
-                </tr>
-                <tr>
-                    <td>Select by Applicant:</td>
-                    <td>@Html.DropDownList("ApplicantID", null, "All Applicants", htmlAttributes: new { @class = "form-control" })</td>
-                </tr>
-                <tr>
-                    <td>Select by File:</td>
-                    <td>@Html.DropDownList("FileStoreID", null, "All Files", htmlAttributes: new { @class = "form-control" })</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="actionButton" value="Filter" class="btn btn-default" />
-                        @Html.ActionLink("Clear", "Index")
-                    </td>
-                </tr>
-            </table>
-        </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileStore.FileContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posting.Title)
+        </th>
+        <th></th>
+    </tr>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileStore.FileContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Posting.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
 
-        <table class="table">
-            <tr>
-                <th>
-                    <input type="submit" name="actionButton" value="Applicant Name" class="btn btn-default" />
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FileStore.FileContent)
-                </th>
-                <th>
-                    <input type="submit" name="actionButton" value="Posting" class="btn btn-default" />
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Applicant.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FileStore.FileContent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Posting.Title)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>
-                </tr>
-            }
-
-        </table>
-        <input type="hidden" name="sortDirection" value="@ViewBag.sortDirection" />
-        <input type="hidden" name="sortField" value="@ViewBag.sortField" />
-    }
-</div>
+</table>

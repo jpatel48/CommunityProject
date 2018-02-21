@@ -16,84 +16,14 @@ namespace SampleProjectBootStrap.Controllers
         private JobEntities db = new JobEntities();
 
         // GET: Applications
-
-        public ActionResult Index(string sortDirection, string sortField, string actionButton, int? ApplicantID, int? PostingID, int? FileStoreID)
+        public ActionResult Index()
         {
-            PopulateDropDownLists();
-
             var applications = db.Applications.Include(a => a.Applicant).Include(a => a.FileStore).Include(a => a.Posting);
-
-            //Add as many filters as needed
-            if (ApplicantID.HasValue)
-                applications = applications.Where(p => p.ApplicantID == ApplicantID);
-
-            if (PostingID.HasValue)
-                applications = applications.Where(p => p.PostingID == PostingID);
-
-            if (FileStoreID.HasValue)
-                applications = applications.Where(p => p.FileStoreID == FileStoreID);
-
-
-            //sorting
-            if (!String.IsNullOrEmpty(actionButton)) //Form Submitted so lets sort!
-            {
-                if (actionButton != "Filter")//Change of sort is requested
-                {
-                    if (actionButton == sortField) //Reverse order on same field
-                    {
-                        sortDirection = String.IsNullOrEmpty(sortDirection) ? "desc" : "";
-                    }
-                    sortField = actionButton;//Sort by the button clicked
-                }
-                //Now we know which field and direction to sort by, but a Switch is hard to use for 2 criteria
-                //so we will use an if() structure instead.
-                if (sortField.Contains("Posting"))//Sorting by Posting Name
-                {
-                    if (String.IsNullOrEmpty(sortDirection))
-                    {
-                        applications = applications
-                            .OrderBy(p => p.Posting.Title);
-                    }
-                    else
-                    {
-                        applications = applications
-                            .OrderByDescending(p => p.Posting.Title);
-                    }
-                }
-                else if (sortField.Contains("Applicant"))//Sorting by Applicant
-                {
-                    if (String.IsNullOrEmpty(sortDirection))
-                    {
-                        applications = applications.OrderBy(p => p.Applicant.LastName)
-                            .ThenBy(p => p.Applicant.FirstName);
-                    }
-                    else
-                    {
-                        applications = applications.OrderByDescending(p => p.Applicant.LastName)
-                            .ThenBy(p => p.Applicant.FirstName);
-                    }
-                }
-                else if (sortField.Contains("FileStore"))//Sorting by Applicant
-                {
-                    if (String.IsNullOrEmpty(sortDirection))
-                    {
-                        applications = applications.OrderBy(p => p.FileStore.FileName);
-                    }
-                    else
-                    {
-                        applications = applications.OrderByDescending(p => p.FileStore.FileName);
-                    }
-                }
-            }
-
-            //Set sort for next time
-            ViewBag.sortField = sortField;
-            ViewBag.sortDirection = sortDirection;
             return View(applications.ToList());
         }
 
-            // GET: Applications/Details/5
-            public ActionResult Details(int? id)
+        // GET: Applications/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -110,7 +40,9 @@ namespace SampleProjectBootStrap.Controllers
         // GET: Applications/Create
         public ActionResult Create()
         {
-            PopulateDropDownLists();
+            ViewBag.ApplicantID = new SelectList(db.Applicants, "ID", "FirstName");
+            ViewBag.FileStoreID = new SelectList(db.FileStores, "ID", "FileContent");
+            ViewBag.PostingID = new SelectList(db.Postings, "ID", "Title");
             return View();
         }
 
@@ -121,29 +53,16 @@ namespace SampleProjectBootStrap.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,PostingID,ApplicantID,FileStoreID")] Application application)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    db.Applications.Add(application);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-            catch (DataException dex)
-            {
-                if (dex.InnerException.InnerException.Message.Contains("IX_"))
-                {
-                    ModelState.AddModelError("", "Unable to save changes. Remember, the same person cannot apply to the same job posting more than once.");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-                }
-
+                db.Applications.Add(application);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            PopulateDropDownLists(application);
+            ViewBag.ApplicantID = new SelectList(db.Applicants, "ID", "FirstName", application.ApplicantID);
+            ViewBag.FileStoreID = new SelectList(db.FileStores, "ID", "FileContent", application.FileStoreID);
+            ViewBag.PostingID = new SelectList(db.Postings, "ID", "Title", application.PostingID);
             return View(application);
         }
 
@@ -159,44 +78,29 @@ namespace SampleProjectBootStrap.Controllers
             {
                 return HttpNotFound();
             }
-            PopulateDropDownLists(application);
+            ViewBag.ApplicantID = new SelectList(db.Applicants, "ID", "FirstName", application.ApplicantID);
+            ViewBag.FileStoreID = new SelectList(db.FileStores, "ID", "FileContent", application.FileStoreID);
+            ViewBag.PostingID = new SelectList(db.Postings, "ID", "Title", application.PostingID);
             return View(application);
         }
 
         // POST: Applications/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost, ActionName("Edit")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditPost(int? id )
+        public ActionResult Edit([Bind(Include = "ID,PostingID,ApplicantID,FileStoreID")] Application application)
         {
-            if (id == null)
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                db.Entry(application).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            var applicationToUpdate = db.Applications.Find(id);
-            if (TryUpdateModel(applicationToUpdate, "",
-               new string[] { "PostingID", "ApplicantID", "FileStoreID" }))
-            {
-                try
-                {
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch (DataException dex)
-                {
-                    if (dex.InnerException.InnerException.Message.Contains("IX_"))
-                    {
-                        ModelState.AddModelError("OHIP", "Unable to save changes. Remember, the same person cannot apply for the sae job posting more than once.");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-                    }
-                }
-            }
-            PopulateDropDownLists(applicationToUpdate);
-            return View(applicationToUpdate);
+            ViewBag.ApplicantID = new SelectList(db.Applicants, "ID", "FirstName", application.ApplicantID);
+            ViewBag.FileStoreID = new SelectList(db.FileStores, "ID", "FileContent", application.FileStoreID);
+            ViewBag.PostingID = new SelectList(db.Postings, "ID", "Title", application.PostingID);
+            return View(application);
         }
 
         // GET: Applications/Delete/5
@@ -220,32 +124,9 @@ namespace SampleProjectBootStrap.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Application application = db.Applications.Find(id);
-            try
-            {
-                db.Applications.Remove(application);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            }
-            return View(application);
-        }
-
-
-        private void PopulateDropDownLists(Application application = null)
-        {
-            var dQuery = from d in db.Applicants
-                         orderby d.LastName, d.FirstName
-                         select d;
-            ViewBag.ApplicantID = new SelectList(dQuery, "ID", "FullName", application?.ApplicantID);
-
-            var aQuery = from a in db.Postings.Include(s => s.Position)
-                         .OrderBy(s => s.Position.ID)
-                         .ThenBy(s => s.ClosingDate)
-                         select a;
-            ViewBag.PostingID = new SelectList(aQuery, "ID", "Title", application?.PostingID);
+            db.Applications.Remove(application);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
