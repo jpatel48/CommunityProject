@@ -194,10 +194,15 @@
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="DAL\JobEntities.cs" />
     <Compile Include="DAL\JobMigrations\201802110409077_Initial.cs" />
     <Compile Include="DAL\JobMigrations\201802110409077_Initial.Designer.cs">
       <DependentUpon>201802110409077_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\JobMigrations\201802202253426_DeleteProvinceCityFTE.cs" />
+    <Compile Include="DAL\JobMigrations\201802202253426_DeleteProvinceCityFTE.Designer.cs">
+      <DependentUpon>201802202253426_DeleteProvinceCityFTE.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\JobMigrations\Configuration.cs" />
     <Compile Include="Global.asax.cs">
@@ -289,6 +294,11 @@
     <Content Include="Views\Applications\Details.cshtml" />
     <Content Include="Views\Applications\Edit.cshtml" />
     <Content Include="Views\Applications\Index.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -311,6 +321,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DAL\JobMigrations\201802110409077_Initial.resx">
       <DependentUpon>201802110409077_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\JobMigrations\201802202253426_DeleteProvinceCityFTE.resx">
+      <DependentUpon>201802202253426_DeleteProvinceCityFTE.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
