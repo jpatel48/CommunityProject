@@ -26,5 +26,9 @@ namespace SampleProjectBootStrap.DAL
         }
 
         public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.FileStore> FileStores { get; set; }
+
+        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.Compensation> Compensations { get; set; }
+
+        public System.Data.Entity.DbSet<SampleProjectBootStrap.Models.JobCode> JobCodes { get; set; }
     }
 }

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ProjectPlanning.Models.Position>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Position", "Create")
+
+</p>
+<p>
+    @Html.ActionLink("Search By:", "Search")
+
+</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            <span id="validationMessage" class="text-danger">@ViewBag.validationMessage</span>
+            <table class="table-condensed">
+                <tr>
+                    <td>Title: </td>
+                    <td>@Html.TextBox("Title", null, new { @class = "form-control" })</td>
+                    @*<td><span id="ValidationMinSalary" class="text-danger">@ViewBag.ValidationMinSalary</span>Minimum Starting Salary: </td>
+                        <td>@Html.TextBox("minSalary", null, new { @class = "form-control" })</td>*@
+                </tr>
+                <tr>
+                    <td> Department: </td>
+                    <td>@Html.TextBox("Department", null, new { @class = "form-control" })</td>
+                    <td> Location: </td>
+                    <td>@Html.TextBox("location", null, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="actionButton" value="Search" class="btn btn-default" />
+                        @*@Html.ActionLink("Search", "Index")*@
+                    </td>
+                    <td>
+                        <input type="submit" name="actionButton" value="Clear" class="btn btn-default" />
+                        @*@Html.ActionLink("Search", "Index")
+                            @Html.ActionLink("Clear", "Index")*@
+                    </td>
+                </tr>
+            </table>
+        </p>
+    }
+</div>
+<table class="table">
+    >
+    <th>
+        @Html.DisplayNameFor(model => model.Compensation.CompensationType)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.JobCode.Code)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Salary)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FTEType)
+    </th>
+    <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Compensation.CompensationType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCode.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FTEType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
